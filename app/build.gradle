@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 24
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.example.cm.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        build {
+            resValue "string", "app_name", "build_app"
+        }
+        release {
+            minifyEnabled false
+            resValue "string", "app_name", "singed_app"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        local {
+            applicationId "com.reoger.app"
+            buildConfigField 'String', 'API_URL', '"http://www.baidu.com"'
+            resValue "string", "app_name", "app"
+        }
+        us {
+            applicationId "com.reoger.app.us"
+            buildConfigField 'String', 'API_URL', '"http://www.google.com"'
+            resValue "string", "app_name", "app_us"
+
+        }
+        za {
+            applicationId "com.reoger.app.za"
+            buildConfigField 'String', 'API_URL', '"http://www.nanfei.com"'
+            resValue "string", "app_name", "app_za"
+        }
+    }
+}
+
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+}
